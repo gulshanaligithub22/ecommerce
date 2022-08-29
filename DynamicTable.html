@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UI Developer</title>
+<style>
+    table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+          
+        th, td {
+            text-align: center;
+            padding: 4px;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #d1cccc;
+        }
+          
+        tr:nth-child(even) {
+            background-color: lightgray;
+        }
+        th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 5px;
+        background-color: #007fff;
+        color: white;
+        
+        }
+
+        tbody tr:hover.selected td,
+        tbody tr:hover td {
+            background-color: lightgreen;
+            cursor: pointer;
+        }
+        tbody {
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(221, 220, 220);
+        }
+        tr.selected {
+    background-color:black;
+    color:white;
+}
+</style>
+</head>
+<body>
+<h1>Dynamic Table Binding</h1>
+<input type="button" id = "btnGenerate" onclick="LoadTable();" value="Get Data" style="margin-bottom:10px" />
+<table style="width:100%;font-size:12px;" id="tblCustomer">
+    <tr style="border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 220, 220);">
+        <th style="display:none;" Employee ID</th>
+        <th>Name</th>
+        <th>EmailID</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+</table>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(function () {
+    $("#tblCustomer").on('click','.btnRowEdit',function(){
+         var currentRow=$(this).closest("tr"); 
+         var col1=currentRow.find("td:eq(0)").text(); 
+         var col2=currentRow.find("td:eq(1)").text(); 
+         var col3=currentRow.find("td:eq(2)").text(); 
+         var col4=currentRow.find("td:eq(3)").text(); 
+         var col5=currentRow.find("td:eq(4)").text(); 
+         var data=col1+"\n"+col2+"\n"+col3+"\n"+col4+"\n"+col5;
+         alert(data);
+         //$(this).closest("tr").css('background-color', 'red');
+    });
+});
+
+function LoadTable()
+    {
+        const customers = [
+        {EmployeeID: 1001, Name: "Gulshan Ali", EmailID: "gulshan@gmail.com",Mobile: "9533799360",Address: "Hyderabad"},
+        {EmployeeID: 1002, Name: "Zahid Ali", EmailID: "zahid@gmail.com",Mobile: "9899797686",Address: "Raipur"},
+        {EmployeeID: 1003, Name: "Raushan Ali", EmailID: "raushan@gmail.com",Mobile: "9533799360",Address: "Gorakhpur"},
+        {EmployeeID: 1004, Name: "Danish Ali", EmailID: "danish@gmail.com",Mobile: "9533799360",Address: "Hyderabad"},
+        {EmployeeID: 1005, Name: "Raunak Ali", EmailID: "raunak@gmail.com",Mobile: "9878786765",Address: "Raipur"},
+        {EmployeeID: 1006, Name: "MD Sharwar Ali", EmailID: "mdshar@gmail.com",Mobile: "98934654275",Address: "Hyderabad"},
+        ]
+        $("#tblCustomer").find("tr:gt(0)").remove();
+          if (customers.length > 0) {
+              for (var i = 0; i < customers.length; i++) {
+                  var vEmployeeID = customers[i]['EmployeeID'];
+                  var vName = customers[i]['Name'];
+                  var vEmailID = customers[i]['EmailID'];
+                  var vMobile = customers[i]['Mobile'];
+                  var vAddress = customers[i]['Address'];
+                  var markup = "<tr><td style='display:none;''> " + vEmployeeID + "</td><td> " + vName + "</td><td> " + vEmailID + "</td><td> " + vMobile + "</td><td> " + vAddress + "</td><td><button type='button' class='btnRowEdit' id='btnRowEdit1'   style='background-color:#007fff;color:white;border:none;border-radius: 5px;cursor:pointer;'>Edit</button></td>/tr>"
+                  $('#tblCustomer').append(markup);
+            }
+        }
+    }
+</script>
+</body>
+</html>
