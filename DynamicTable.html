@@ -61,6 +61,9 @@
 </table>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+    (function () {
+    alert("I am here");
+})();
 $(function () {
     $("#tblCustomer").on('click','.btnRowEdit',function(){
          var currentRow=$(this).closest("tr"); 
