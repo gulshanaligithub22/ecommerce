@@ -44,7 +44,7 @@
 }
 </style>
 </head>
-<body onLoad="LoadTable()">
+<body>
 <h1>Dynamic Table Binding</h1>
 <input type="button" id = "btnGenerate" onclick="LoadTable();" value="Get Data" style="margin-bottom:10px" />
 <table style="width:100%;font-size:12px;" id="tblCustomer">
@@ -61,22 +61,10 @@
 </table>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-    (function () {
+(function () {
     alert("I am here");
 })();
-$(function () {
-    $("#tblCustomer").on('click','.btnRowEdit',function(){
-         var currentRow=$(this).closest("tr"); 
-         var col1=currentRow.find("td:eq(0)").text(); 
-         var col2=currentRow.find("td:eq(1)").text(); 
-         var col3=currentRow.find("td:eq(2)").text(); 
-         var col4=currentRow.find("td:eq(3)").text(); 
-         var col5=currentRow.find("td:eq(4)").text(); 
-         var data=col1+"\n"+col2+"\n"+col3+"\n"+col4+"\n"+col5;
-         alert(data);
-         //$(this).closest("tr").css('background-color', 'red');
-    });
-});
+
 
 function LoadTable()
     {
